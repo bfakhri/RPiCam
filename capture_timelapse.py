@@ -49,9 +49,6 @@ for i in itertools.count():
     ret, frame = cap.read()
     last_time = time.time()
 
-    # Our operations on the frame come here
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
     # Format the output string to make it readable
     write_str = (frame_prefix+'{0:0'+str(max_places)+'d}'+frame_suffix).format(i)
     cv2.imwrite(base_dir+capture_dir+write_str, frame)
@@ -59,7 +56,7 @@ for i in itertools.count():
     print(out_str)
 
     # Display the resulting frame
-    cv2.imshow('frame',gray)
+    cv2.imshow('frame',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
