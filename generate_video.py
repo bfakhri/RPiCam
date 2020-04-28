@@ -13,9 +13,12 @@ base_dir = './images/'
 capture_dir = 'test/'
 path = base_dir + capture_dir
 fps = 30
+skip_mult = 20
 
 frame_files = [f for f in listdir(path) if isfile(join(path, f))]
 frame_files.sort()
+# Skip over `skip_mult' frames
+frame_files = frame_files[::skip_mult]
 
 frame_0 = cv2.imread(base_dir+capture_dir+frame_files[0])
 frame_width = int(frame_0.shape[1])

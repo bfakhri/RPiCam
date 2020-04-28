@@ -55,10 +55,10 @@ for i in itertools.count():
     out_str = (write_str+'\tCaptured {0:-1.2f} seconds').format(last_time-init_time)
     print(out_str)
 
-    # Display the resulting frame
-    cv2.imshow('frame',frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    ## Display the resulting frame
+    #cv2.imshow('frame',frame)
+    #if cv2.waitKey(1) & 0xFF == ord('q'):
+    #    break
 
 
 # When everything done, release the capture
