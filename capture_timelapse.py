@@ -10,15 +10,16 @@ import itertools
 import math
 import time
 
-
+# Timelapse Params
 base_dir = './images/'
 capture_dir = 'test/'
-#max_frames = 150
 max_frames = math.inf
 period = 1
+#blackout_hours = [
+
 # Max number of leading zeros, to keep things in order
 if(max_frames == math.inf):
-    max_places = 16
+    max_places = 18
 else:
     max_places = int(math.log(max_frames)/math.log(10) + 1)
 
@@ -47,7 +48,8 @@ for i in itertools.count():
 
     # Capture frame-by-frame
     ret, frame = cap.read()
-    last_time = time.time()
+    #last_time = time.time()
+    last_time += period
 
     # Format the output string to make it readable
     write_str = (frame_prefix+'{0:0'+str(max_places)+'d}'+frame_suffix).format(i)
