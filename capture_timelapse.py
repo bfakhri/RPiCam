@@ -2,7 +2,7 @@
 
 import numpy as np
 frame_prefix = 'frame_'
-frame_suffix = '.png'
+frame_suffix = '.jpg'
 
 import cv2
 import os
@@ -15,11 +15,12 @@ from datetime import datetime
 base_dir = './images/'
 capture_dir = 'test/'
 max_frames = math.inf
-#period = 30
+period = 30
 #period = 10
 #period = 1
-period = 4
+#period = 4
 #period = 0.1
+jpg_quality = 98
 
 # Don't take images between 5pm and 9am (when light is off)
 blackout_start = 12+5
@@ -54,9 +55,6 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080);
 frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
 
-frame_prefix = 'frame_'
-frame_suffix = '.png'
-
 # Get time in seconds
 last_time = time.time()
 init_time = last_time
@@ -78,10 +76,11 @@ for i in itertools.count():
     current_hour  = datetime.now().hour
     #if(current_hour > blackout_end and current_hour < blackout_start):
     if(True):
-        cv2.imwrite(base_dir+capture_dir+write_str, frame)
-        out_str = (write_str+'\tCaptured {0:-1.2f} seconds @ {1:-1.2f} frames-per-minute').format(last_time-init_time, 60/period)
+        #cv2.imwrite(base_dir+capture_dir+write_str, frame)
+        cv2.imwrite(base_dir+capture_dir+write_str, frame, [int(cv2.IMWRITE_JPEG_QUALITY), jpg_quality])
+        out_str = (write_str+'\tCaptured {0:-1.2f} seconds @ {1:-1.2f} fpm or {2:-1.2f} fph ').format(last_time-init_time, 60/period, 60*60/period)
     else:
-        out_str = (write_str+'\tBLACKOUT {0:-1.2f} seconds @ {1:-1.2f} frames-per-minute').format(last_time-init_time, 60/period)
+        out_str = (write_str+'\tCaptured {0:-1.2f} seconds @ {1:-1.2f} fpm or {2:-1.2f} fph ').format(last_time-init_time, 60/period, 60*60/period)
 
     print(out_str)
 
