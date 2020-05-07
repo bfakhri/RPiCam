@@ -15,7 +15,10 @@ from datetime import datetime
 base_dir = './images/'
 capture_dir = 'test/'
 max_frames = math.inf
-period = 30
+#period = 30
+#period = 10
+#period = 1
+period = 4
 #period = 0.1
 
 # Don't take images between 5pm and 9am (when light is off)
@@ -23,8 +26,8 @@ blackout_start = 12+5
 blackout_end = 0+9
 
 ## Don't take images between 5pm and 9am (when light is off)
-#blackout_start = 12+10
-#blackout_end = 12+11
+#blackout_start = 12+11
+#blackout_end = 0+2
 
 # Max number of leading zeros, to keep things in order
 if(max_frames == math.inf):
@@ -73,7 +76,8 @@ for i in itertools.count():
     write_str = (frame_prefix+'{0:0'+str(max_places)+'d}'+frame_suffix).format(i)
     print(datetime.now().hour)
     current_hour  = datetime.now().hour
-    if(current_hour > blackout_end and current_hour < blackout_start):
+    #if(current_hour > blackout_end and current_hour < blackout_start):
+    if(True):
         cv2.imwrite(base_dir+capture_dir+write_str, frame)
         out_str = (write_str+'\tCaptured {0:-1.2f} seconds @ {1:-1.2f} frames-per-minute').format(last_time-init_time, 60/period)
     else:
