@@ -15,6 +15,8 @@ path = base_dir + capture_dir
 fps = 30
 #skip_mult = 18
 skip_mult = 8
+# Limit to cut night off at
+min_img_mean = 100
 
 frame_files = [f for f in listdir(path) if isfile(join(path, f))]
 frame_files.sort()
@@ -28,9 +30,13 @@ out = cv2.VideoWriter(base_dir+'outpy8.avi',cv2.VideoWriter_fourcc('M','J','P','
 
 for idx,frame_f in enumerate(frame_files):
     frame = cv2.imread(base_dir+capture_dir+frame_f)
-    out_str = ('Encoding: '+frame_f+'\t{0:3.2f}%\tFrameMean: {1:f}').format(100*idx/len(frame_files), np.mean(frame))
+    mean = np.mean(frame)
+    out_str = ('Encoding: '+frame_f+'\t{0:3.2f}%\tFrameMean: {1:f}').format(100*idx/len(frame_files), mean)
     print(out_str, end='\r')
-    out.write(frame)
+    if(mean > min_img_mean):
+        out.write(frame)
+    else:
+        print('skipping frame, too dark')
 
 
 # When everything done, release the capture
