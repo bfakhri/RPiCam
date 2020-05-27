@@ -45,12 +45,19 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,1920);
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080);
 
+# Set a manual focus (if provided)
+focus = int(input('Set Manual Focus (between 0 and 255). Enter -1 for autofocus: '))
+# Set the focus
+if(focus > 255 or focus < 0):
+    print('Autofocus Enabled')
+else:
+    cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)
+    cap.set(28, focus)
+
 # Exposure settings (not yet working)
 #cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)
 #cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0)
 #cap.set(cv2.CAP_PROP_EXPOSURE, 0.10)
-#focus = 0  # min: 0, max: 255, increment:5
-#cap.set(28, focus)
 
 frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
