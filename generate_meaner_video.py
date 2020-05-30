@@ -48,4 +48,3 @@ for idx,frame_f in enumerate(frame_files):
 
 # When everything done, release the capture
 out.release()
-cv2.destroyAllWindows()
