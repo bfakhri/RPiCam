@@ -25,7 +25,9 @@ This will capture images indefinitely (or, more practically, until you run out o
 
 ## Compile captured images into a video
 
-Once you are finished capturing the image, use the ``` generate_slider_video.py ```. 
+Once you are finished capturing the image, use the ``` generate_slider_video.py ```.  Again, the video parameters can be changed at the beginning of the script. 
+
+This will output a video similar to the one I made of a Portulaca below: 
 
 [![Timelapse of a Portulaca](https://raw.githubusercontent.com/bfakhri/RPiCam/master/portulaca.png)](https://youtu.be/m5NLu9jh1go "Timelapse of a Portulaca")
 
