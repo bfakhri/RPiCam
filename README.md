@@ -27,5 +27,5 @@ This will capture images indefinitely (or, more practically, until you run out o
 
 Once you are finished capturing the image, use the ``` generate_slider_video.py ```. 
 
-[![Timelapse of a Portulaca](https://raw.githubusercontent.com/bfakhri/Poker/master/portulaca.png)](https://youtu.be/m5NLu9jh1go "Timelapse of a Portulaca")
+[![Timelapse of a Portulaca](https://raw.githubusercontent.com/bfakhri/RPiCam/master/portulaca.png)](https://youtu.be/m5NLu9jh1go "Timelapse of a Portulaca")
 
