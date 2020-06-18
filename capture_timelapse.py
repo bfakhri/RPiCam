@@ -15,7 +15,7 @@ from datetime import datetime
 base_dir = './images/'
 capture_dir = 'test/'
 max_frames = math.inf
-period = 10
+period = 4
 jpg_quality = 98
 
 # Max number of leading zeros, to keep things in order

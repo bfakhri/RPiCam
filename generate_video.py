@@ -14,9 +14,10 @@ capture_dir = 'test/'
 path = base_dir + capture_dir
 fps = 30
 #skip_mult = 18
-skip_mult = 8
+skip_mult = 10
 # Limit to cut night off at
-min_img_mean = 100
+#min_img_mean = 100
+min_img_mean = 10
 
 frame_files = [f for f in listdir(path) if isfile(join(path, f))]
 frame_files.sort()
