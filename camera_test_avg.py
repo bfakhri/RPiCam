@@ -7,22 +7,30 @@ cap = cv2.VideoCapture(0)
 # Set camera resolution
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,1920);
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080);
-cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)
+#cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)
 
 
-focus = int(input('Enter Focus (0-255): '))
-cap.set(28, focus) 
+#focus = int(input('Enter Focus (0-255): '))
+#cap.set(28, focus) 
+
+avg_list = []
 
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
+    avg_list.append(frame)
+    if(len(avg_list) > 30):
+        avg_list.pop(0)
 
     # Our operations on the frame come here
-    print(frame.shape, focus)
+    print(len(avg_list))
 
     # Display the resulting frame
     #cv2.imshow('frame',gray)
-    cv2.imshow('frame',frame)
+    show_frame = np.mean(np.stack(avg_list, axis=0), axis=0).astype(np.uint8)
+    print(show_frame.shape, frame.dtype)
+    cv2.imshow('avg', show_frame)
+    cv2.imshow('frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
